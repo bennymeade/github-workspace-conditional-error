@@ -19,11 +19,11 @@ jobs:
           JSON: ${{ toJSON(github) }}
         
       - name: Check workspace for macos
-        if: ${{ github.workspace == '/Users/runner/work/unilever-online/unilever-online' }}
+        if: ${{ contains('/Users/runner/work/', github.workspace) }}
         run: |
           echo "I'm running on macos-latest: ${{ matrix.os }}"
 
       - name: Check workspace for ubuntu
-        if: ${{ github.workspace != '/Users/runner/work/unilever-online/unilever-online' }}
+        if: ${{ contains('/home/runner/work/', github.workspace) }}
         run: |
           echo "I'm running on ubuntu-latest: ${{ matrix.os }}"
