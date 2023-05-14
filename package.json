@@ -1,0 +1,8 @@
+{
+  "name": "github-workspace-conditional-error",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/bennymeade/github-workspace-conditional-error.git",
+  "author": "bennymeade <brendan_meade@yahoo.co.uk>",
+  "license": "MIT"
+}

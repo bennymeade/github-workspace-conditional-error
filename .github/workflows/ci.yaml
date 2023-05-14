@@ -1,0 +1,29 @@
+name: 'ci'
+
+on: [workflow_dispatch, push]
+
+jobs:
+  run-ui-tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        node: [18]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Show github json
+        run: |
+          echo $JSON
+        env:
+          JSON: ${{ toJSON(github) }}
+        
+      - name: Check workspace for macos
+        if: ${{ github.workspace == '/Users/runner/work/unilever-online/unilever-online' }}
+        run: |
+          echo "I'm running on macos-latest: ${{ matrix.os }}"
+
+      - name: Check workspace for ubuntu
+        if: ${{ github.workspace != '/Users/runner/work/unilever-online/unilever-online' }}
+        run: |
+          echo "I'm running on ubuntu-latest: ${{ matrix.os }}"
