@@ -20,7 +20,8 @@ jobs:
           JSON: ${{ toJSON(github) }}
         
       - name: Check workspace for macos
-        if: contains('/Users/runner/work/', github.workspace)
+        # if: contains('/Users/runner/work/', github.workspace)
+        if: contains('push', github.event_name)
         run: |
           echo "I'm running on macos-latest: ${{ matrix.os }}"
 
