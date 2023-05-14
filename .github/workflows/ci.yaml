@@ -19,9 +19,13 @@ jobs:
         env:
           JSON: ${{ toJSON(github) }}
         
-      - name: Check workspace for macos
-        # if: contains('/Users/runner/work/', github.workspace)
+      - name: Check event_name event with a contains
         if: contains('push', github.event_name)
+        run: |
+          echo "My event type is: ${{ github.event_name }}"
+
+      - name: Check workspace for macos
+        if: contains('/Users/runner/work/', github.workspace)
         run: |
           echo "I'm running on macos-latest: ${{ matrix.os }}"
 
