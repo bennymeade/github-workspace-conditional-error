@@ -24,6 +24,11 @@ jobs:
         run: |
           echo "My event type is: ${{ github.event_name }}"
 
+      - name: Stuff
+        if: github.workspace == '/home/runner/work/github-workspace-conditional-error/github-workspace-conditional-error'
+        run: |
+          echo "I'm picking up event: ${{ github.workspace }}"
+
       - name: Check workspace for macos
         if: contains('/Users/runner/work/', github.workspace)
         run: |
