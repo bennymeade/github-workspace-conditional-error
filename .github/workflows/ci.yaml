@@ -9,12 +9,15 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
         node: [18]
+        runOnlyUbuntu:
+          - ${{ github.workspace == '/home/runner/work/github-workspace-conditional-error/github-workspace-conditional-error' }}
     runs-on: ${{ matrix.os }}
 
     steps:
       - name: Show github json
         run: |
           echo "workspace: ${{ github.workspace }}"
+          echo "runOnlyUbuntu: ${{ matrix.runOnlyUbuntu }}"
           echo $JSON
         env:
           JSON: ${{ toJSON(github) }}
