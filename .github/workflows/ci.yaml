@@ -9,16 +9,20 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
         node: [18]
+        eventNameIsPush:
+          - ${{ github.event_name == 'push' }}
         runOnlyUbuntu:
           # - ${{ github.workspace == '/home/runner/work/github-workspace-conditional-error/github-workspace-conditional-error' }}
           # - ${{startsWith(github.workspace, '/Users/runner/work')}} # both false
-          - ${{ startsWith(github.workspace, '/home/runner/work/') }}
+          - ${{ startsWith(github.workspace, '/home/runner/work/') }} # both false
     runs-on: ${{ matrix.os }}
 
     steps:
       - name: Show github json
         run: |
           echo "workspace: ${{ github.workspace }}"
+          echo "eventName: ${{ matrix.eventNameIsPush }}"
+          echo "${{startsWith(github.workspace, '/Users/runner/work/')}}"
           echo "runOnlyUbuntu: ${{ matrix.runOnlyUbuntu }}"
           echo $JSON
         env:
