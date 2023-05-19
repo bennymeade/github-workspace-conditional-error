@@ -21,8 +21,8 @@ jobs:
       - name: Show github json
         run: |
           echo "workspace: ${{ github.workspace }}"
-          echo "eventName: ${{ matrix.eventNameIsPush }}"
-          echo "${{startsWith(github.workspace, '/Users/runner/work/')}}"
+          echo "eventNameIsPush: ${{ matrix.eventNameIsPush }}"
+          echo "github.workspace, '/Users/runner/work/': ${{startsWith(github.workspace, '/Users/runner/work/')}}"
           echo "runOnlyUbuntu: ${{ matrix.runOnlyUbuntu }}"
           echo $JSON
         env:
