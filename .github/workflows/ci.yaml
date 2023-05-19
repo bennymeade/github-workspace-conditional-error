@@ -11,7 +11,8 @@ jobs:
         node: [18]
         runOnlyUbuntu:
           # - ${{ github.workspace == '/home/runner/work/github-workspace-conditional-error/github-workspace-conditional-error' }}
-          - ${{startsWith(github.workspace, '/Users/runner/work')}}
+          # - ${{startsWith(github.workspace, '/Users/runner/work')}} # both false
+          - ${{ contains(github.workspace, '/Users/runner/work') }}
     runs-on: ${{ matrix.os }}
 
     steps:
