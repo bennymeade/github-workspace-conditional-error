@@ -20,7 +20,7 @@ jobs:
         run: |
           echo "workspace: ${{ github.workspace }}"
           echo "eventNameIsPush: ${{ matrix.eventNameIsPush }}"
-          echo "github.workspace, '/home/runner/work/': ${{startsWith(github.workspace, '/home/runner/work/')}}"
+          echo "Is github.workspace = '/home/runner/work/': ${{startsWith(github.workspace, '/home/runner/work/')}}"
           echo "runOnlyUbuntu: ${{ matrix.runOnlyUbuntu }}"
           echo $JSON
         env:
