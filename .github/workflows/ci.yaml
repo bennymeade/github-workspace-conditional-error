@@ -12,7 +12,7 @@ jobs:
         runOnlyUbuntu:
           # - ${{ github.workspace == '/home/runner/work/github-workspace-conditional-error/github-workspace-conditional-error' }}
           # - ${{startsWith(github.workspace, '/Users/runner/work')}} # both false
-          - ${{ contains(github.workspace, '/Users/runner/work') }}
+          - ${{ contains(github.workspace, '/home/runner/work/') }}
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -23,24 +23,13 @@ jobs:
           echo $JSON
         env:
           JSON: ${{ toJSON(github) }}
-        
-      - name: Check event_name event with a contains
-        if: contains('push', github.event_name)
-        run: |
-          echo "My event type is: ${{ github.event_name }}"
-
-      - name: Check github.workspace full path in conditional
-        # if: github.workspace == '/home/runner/work/github-workspace-conditional-error/github-workspace-conditional-error'
-        if: startsWith(github.workspace, '/Users/runner/work')
-        run: |
-          echo "Should only run on Ubuntu: ${{ github.workspace }}"
 
       - name: Check workspace for macos
-        if: contains('/Users/runner/work/', github.workspace)
+        if: startsWith(github.workspace, '/Users/runner/work/')
         run: |
           echo "I'm running on macos-latest: ${{ matrix.os }}"
 
       - name: Check workspace for ubuntu
-        if: contains(github.workspace, '/Users/runner/work')
+        if: startsWith(github.workspace, '/home/runner/work/')
         run: |
           echo "I'm running on ubuntu-latest: ${{ matrix.os }}"
