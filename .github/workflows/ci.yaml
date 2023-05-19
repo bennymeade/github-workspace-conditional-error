@@ -12,9 +12,7 @@ jobs:
         eventNameIsPush:
           - ${{ github.event_name == 'push' }}
         runOnlyUbuntu:
-          # - ${{ github.workspace == '/home/runner/work/github-workspace-conditional-error/github-workspace-conditional-error' }}
-          - ${{startsWith(github.workspace, '/Users/runner/work')}} # both false
-          # - ${{ startsWith(github.workspace, '/home/runner/work/') }} # both false
+          - ${{ startsWith(github.workspace, '/home/runner/work/') }}
     runs-on: ${{ matrix.os }}
 
     steps:
